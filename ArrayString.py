@@ -59,6 +59,26 @@ def one_way(str1, str2):
     return True
 
 
+def rotate_matrix(matrix):
+    if len(matrix) == 0 or len(matrix) != len(matrix[0]):
+        return False
+    n = len(matrix)
+    for layer in range(0, int(n/2)):  # layer by layer, the central stays
+        first = layer  # the first element of current layer
+        last = n - 1 - layer  # the last element of current layer
+        for i in range(first,last):
+            offset = i - first
+            top = matrix[first][i]  #save top
+            matrix[first][i] = matrix[last - offset][first]  # left --> top
+            matrix[last - offset][first] = matrix[last][last-offset]  # bottom -->left
+            matrix[last][last - offset] = matrix[i][last]  # right --> bottom
+            matrix[i][last] = top
+    return matrix
+
+
+
+
+
 
 
 
@@ -68,4 +88,9 @@ if __name__ =='__main__':
     # print(isUnique("sanb"))
     # print(urlify("dfs dgds dsgsd bjhhj"))
     # print(palindrome_permutation("carerac"))
-    print(one_way('pale', 'ple'))
+    # print(one_way('pale', 'ple'))
+    a = [[1, 2, 3, 'a'],
+         [4, 5, 6, 'b'],
+         [7, 8, 9, 'c'],
+         ['a', 'b', 'c', 'd']]
+    print(rotate_matrix(a))

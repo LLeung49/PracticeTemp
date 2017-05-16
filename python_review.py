@@ -1,3 +1,5 @@
+
+# -*- coding: utf-8 -*-
 import re
 str = "0121345601213456"
 str_list = list(str)
